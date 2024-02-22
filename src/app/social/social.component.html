@@ -1,0 +1,32 @@
+<div class="main-content">
+  <div class="h-screen overflow-y-scroll bg-white">
+    <div class="social-banner relative"></div>
+    <div class="grid grid-cols-1 gap-4 lg:grid-cols-3 md:grid-cols-2 lg:gap-8">
+      <div class="post p-5 lg:p-1 rounded-md flex justify-center">
+        <div
+          class="lg:fixed lg:top-7 lg:left-14 lg:w-3/12 md:fixed md:w-5/12 content-perfil"
+        >
+          <!-- User profile -->
+          <app-user-profile />
+
+          <!-- Post section -->
+          <app-post-section />
+
+          <div class="flex justify-center items-center mt-2"></div>
+        </div>
+      </div>
+      <div
+        class="lg:col-span-2 p-4 bg-white mt-3 flex justify-center flex-col items-center"
+        id="posted"
+      >
+        <div class="s" style="width: 100%">
+          <!-- Search bar -->
+          <app-search-bar />
+        </div>
+
+        <!-- Wall app -->
+        <app-wall />
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,0 +1,56 @@
+<div
+  class="background-modal fixed left-0 top-0 flex h-full w-full items-center justify-center bg-black bg-opacity-50 py-10"
+>
+  <div
+    class="max-h-full w-full max-w-xl overflow-y-auto sm:rounded-2xl bg-white"
+  >
+    <div class="w-full">
+      <div class="m-5 my-10 max-w-[400px] mx-auto">
+        <h1 class="mb-4 text-3xl font-extrabold">Edita tu publicación</h1>
+        <!-- User Info with Three-Dot Menu -->
+        <div class="flex items-center justify-between mb-4">
+          <div class="flex items-center space-x-2">
+            <img
+              src="https://i.pravatar.cc/150?img={{ post()?.id }}"
+              alt="User Avatar"
+              class="w-8 h-8 rounded-full"
+            />
+            <div>
+              <p class="text-gray-800 font-semibold">
+                {{ post()?.nombre_user }}
+              </p>
+              <p class="text-gray-500 text-sm">
+                Publicado el {{ post()?.fecha_publicacion }}
+              </p>
+            </div>
+          </div>
+        </div>
+        <!-- Message -->
+        <div class="mb-4">
+          <input
+            class="font-bold text-gray-800 mb-3 w-full"
+            type="text"
+            [value]="post()?.titulo"
+          />
+
+          <textarea
+            id="postContent"
+            name="postContent"
+            rows="4"
+            class="w-full border-2 rounded-md px-4 py-2 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5 resize-none focus:outline-none focus:border-blue-500"
+            >{{ post()?.descripcion }}</textarea
+          >
+        </div>
+
+        <div class="flex items-center justify-around mt-4">
+          <button
+            (click)="closeModal()"
+            class="p-3 bg-black rounded-full text-white w-full font-semibold"
+          >
+            Actualizar
+          </button>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

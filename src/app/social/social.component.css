@@ -1,0 +1,72 @@
+.main-content {
+  --color-pattern-primary: #0778e255;
+  --color-pattern-secondary: #fff;
+}
+
+.social-banner {
+  height: 100px;
+  /* position: fixed; */
+  /* top: 0; */
+
+  background-color: #e5e5f7;
+  opacity: 0.8;
+  background: linear-gradient(
+        135deg,
+        var(--color-pattern-primary) 25%,
+        transparent 25%
+      ) -10px 0/ 20px 20px,
+    linear-gradient(225deg, var(--color-pattern-secondary) 25%, transparent 25%) -10px
+      0/ 20px 20px,
+    linear-gradient(315deg, var(--color-pattern-primary) 25%, transparent 25%)
+      0px 0/ 20px 20px,
+    linear-gradient(45deg, var(--color-pattern-secondary) 25%, #e5e5f7 25%) 0px
+      0/ 20px 20px;
+}
+
+/* Estilos scroll */
+::-webkit-scrollbar {
+  width: 5px; /* Tamaño del scroll en vertical */
+  height: 5px; /* Tamaño del scroll en horizontal */
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del thumb */
+::-webkit-scrollbar-thumb {
+  background: #ccc;
+  /* border-radius: 4px; */
+}
+
+/* Cambiamos el fondo y agregamos una sombra cuando esté en hover */
+::-webkit-scrollbar-thumb:hover {
+  background: #b3b3b3;
+  box-shadow: 0 0 2px 1px rgba(0, 0, 0, 0.2);
+}
+
+/* Cambiamos el fondo cuando esté en active */
+::-webkit-scrollbar-thumb:active {
+  background-color: #999999;
+}
+
+/* Ponemos un color de fondo y redondeamos las esquinas del track */
+::-webkit-scrollbar-track {
+  background: #e1e1e1;
+  /* border-radius: 4px; */
+}
+
+/* Cambiamos el fondo cuando esté en active o hover */
+::-webkit-scrollbar-track:hover,
+::-webkit-scrollbar-track:active {
+  background: #d4d4d4;
+}
+
+/* Contenedor perfil */
+.content-perfil {
+  overflow-y: auto;
+  height: 90vh;
+}
+
+@media (max-width: 767px) {
+  .content-perfil {
+    overflow-y: hidden;
+    height: auto;
+  }
+}
