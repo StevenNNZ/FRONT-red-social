@@ -17,7 +17,7 @@
                 class="w-full rounded-t-lg"
               />
               <img
-                src="https://i.pravatar.cc/150?img={{ user()?.id }}"
+                src="https://i.pravatar.cc/150?img={{ 2 }}"
                 alt="Profile Picture"
                 class="absolute bottom-0 left-2/4 transform -translate-x-1/2 translate-y-1/2 w-24 h-24 rounded-full border-4 border-white"
               />
@@ -37,14 +37,14 @@
 
               <p class="text-gray-700 text-center mb-1">
                 <b>Creado el</b> <br />
-                {{ user()?.createdAt }}
+                {{ user()?.createdAt | date : "medium" }}
               </p>
               <p class="text-gray-700 text-center">
                 <b>Fecha nacimiento</b><br />
               </p>
               <input
                 type="date"
-                [value]="user()?.birthdate"
+                [value]="user()?.birthDate"
                 (input)="imprimir($event)"
               />
             </div>

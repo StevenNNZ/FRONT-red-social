@@ -1,11 +1,12 @@
 import { ChangeDetectionStrategy, Component, computed } from '@angular/core';
 import { Observable, fromEvent, map, Subscription } from 'rxjs';
 import { modalUpdateProfileData } from '../../services/modal-signals';
+import { CommonModule } from '@angular/common';
 
 @Component({
   selector: 'app-update-user-modal',
   standalone: true,
-  imports: [],
+  imports: [CommonModule],
   templateUrl: './update-user-modal.component.html',
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,

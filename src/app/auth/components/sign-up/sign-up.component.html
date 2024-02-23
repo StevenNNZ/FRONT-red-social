@@ -5,19 +5,8 @@
   <h1 class="text-sm font-semibold mb-6 text-gray-500 text-center">
     ¡Te damos la bienvenida a la mejor comunidad de internet!
   </h1>
-  <div class="mt-4 flex flex-col lg:flex-row items-center justify-center">
-    <asl-google-signin-button
-      type="standard"
-      size="large"
-      shape="circle"
-      [width]="250"
-      text="continue_with"
-    />
-  </div>
-  <div class="mt-4 text-sm text-gray-600 text-center">
-    <p>o con correo</p>
-  </div>
-  <form action="#" method="POST" class="space-y-4">
+
+  <form [formGroup]="form" class="space-y-4">
     <!-- Your form elements go here -->
     <div>
       <label for="username" class="block text-sm font-medium text-gray-700"
@@ -25,11 +14,14 @@
       >
       <input
         type="text"
-        id="username"
-        name="username"
+        formControlName="fullName"
         placeholder="John Smith Doe "
         class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
       />
+      @if (invalidField('fullName')) {
+      <span class="text-sm text-red-500">{{ getError("fullName") }}</span>
+
+      }
     </div>
     <div>
       <label for="email" class="block text-sm font-medium text-gray-700"
@@ -37,11 +29,14 @@
       >
       <input
         type="text"
-        id="email"
-        name="email"
+        formControlName="email"
         placeholder="you@example.com"
         class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
       />
+      @if (invalidField('email')) {
+      <span class="text-sm text-red-500">{{ getError("email") }}</span>
+
+      }
     </div>
     <div>
       <label for="password" class="block text-sm font-medium text-gray-700"
@@ -49,11 +44,14 @@
       >
       <input
         type="password"
-        id="password"
+        formControlName="password"
         placeholder="*********"
-        name="password"
         class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
       />
+      @if (invalidField('password')) {
+      <span class="text-sm text-red-500">{{ getError("password") }}</span>
+
+      }
     </div>
     <div>
       <label for="email" class="block text-sm font-medium text-gray-700"
@@ -61,15 +59,19 @@
       >
       <input
         type="date"
-        id="email"
-        name="email"
+        formControlName="birthDate"
         class="mt-1 p-2 w-full border rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
       />
+      @if (invalidField('birthDate')) {
+      <span class="text-sm text-red-500">{{ getError("birthDate") }}</span>
+      }
     </div>
+
     <div>
       <button
         type="submit"
         class="w-full bg-black text-white p-2 rounded-md hover:bg-gray-800 focus:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300"
+        (click)="register()"
       >
         Registrarse
       </button>

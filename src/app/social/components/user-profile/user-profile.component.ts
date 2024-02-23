@@ -4,15 +4,15 @@ import {
   OnInit,
   computed,
   inject,
-  signal,
 } from '@angular/core';
 import { UpdateUserModalComponent } from '../update-user-modal/update-user-modal.component';
 import {
   modalUpdateProfileActive,
   modalUpdateProfileData,
 } from '../../services/modal-signals';
-import { UserService } from '../../services/user.service';
 import { CommonModule } from '@angular/common';
+import { AuthService } from '../../../auth/services/auth.service';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-user-profile',
@@ -24,18 +24,20 @@ import { CommonModule } from '@angular/common';
 })
 export class UserProfileComponent implements OnInit {
   // Services
-  private userService = inject(UserService);
+  private auth = inject(AuthService);
+  private router = inject(Router);
 
   // Signals
+  public user = computed(this.auth.currentUser);
   public showModal = computed(modalUpdateProfileActive);
-  public user = computed(this.userService.user);
 
   ngOnInit(): void {
-    this.userService.getUser().subscribe({
-      error: (error) => {
-        console.log(error);
-      },
-    });
+    console.log(this.user());
+  }
+
+  logOut() {
+    this.auth.logOut();
+    this.router.navigateByUrl('/');
   }
 
   getAge(fNacimiento: string): number {

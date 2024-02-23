@@ -1,6 +1,6 @@
 import { computed, signal } from '@angular/core';
 import { Post } from '../interfaces/post.interface';
-import { User } from '../interfaces/user.interface';
+import { User } from '../../auth/interface/user-login.interface';
 
 export const modalUpdatePostActive = computed(() =>
   modalUpdatePostData() ? true : false

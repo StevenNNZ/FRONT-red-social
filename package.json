@@ -3,14 +3,14 @@
   "version": "0.0.0",
   "scripts": {
     "ng": "ng",
-    "start": "ng serve",
+    "start": "npm run envs && ng serve",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
-    "test": "ng test"
+    "test": "ng test",
+    "envs": "node ./scripts/set-envs.js"
   },
   "private": true,
   "dependencies": {
-    "@abacritt/angularx-social-login": "^2.2.0",
     "@angular/animations": "^17.1.0",
     "@angular/common": "^17.1.0",
     "@angular/compiler": "^17.1.0",
@@ -19,7 +19,9 @@
     "@angular/platform-browser": "^17.1.0",
     "@angular/platform-browser-dynamic": "^17.1.0",
     "@angular/router": "^17.1.0",
+    "dotenv": "^16.4.5",
     "rxjs": "~7.8.0",
+    "sweetalert2": "^11.10.5",
     "tslib": "^2.3.0",
     "zone.js": "~0.14.3"
   },
