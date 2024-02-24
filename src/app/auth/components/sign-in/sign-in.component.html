@@ -14,6 +14,7 @@
         >Correo</label
       >
       <input
+        id="email"
         type="text"
         formControlName="email"
         placeholder="you@example.com"
@@ -29,6 +30,7 @@
         >Contraseña</label
       >
       <input
+        id="password"
         type="password"
         placeholder="*********"
         name="password"
@@ -40,11 +42,19 @@
 
       }
     </div>
+
+    @if (loading) {
+    <div class="flex w-full justify-center">
+      <app-spinner />
+    </div>
+    }
+
     <div>
       <button
         type="submit"
         class="w-full bg-black text-white p-2 rounded-md hover:bg-gray-800 focus:bg-black focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-900 transition-colors duration-300"
         (click)="login()"
+        [disabled]="loading"
       >
         Ingresar
       </button>

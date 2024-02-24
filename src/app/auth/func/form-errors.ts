@@ -12,11 +12,6 @@ export const sweetAlert = (title: string, html: string) => {
     position: 'top-end',
     backdrop: false,
     timerProgressBar: true,
-  }).then((result) => {
-    /* Read more about handling dismissals below */
-    if (result.dismiss === Swal.DismissReason.timer) {
-      console.log('I was closed by the timer');
-    }
   });
 };
 

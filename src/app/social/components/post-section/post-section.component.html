@@ -1,25 +1,48 @@
 <div class="bg-white p-8 rounded-lg shadow-md max-w-md w-full">
-  <form>
+  <form [formGroup]="form">
     <!-- Post Content Section -->
     <div class="mb-6">
+      <label class="block text-gray-700 text-sm font-bold mb-2"
+        >Publicar contenido:</label
+      >
+
+      <label for="title" class="block text-sm font-medium text-gray-700"
+        >Título</label
+      >
+      <input
+        id="title"
+        type="text"
+        formControlName="title"
+        placeholder="Dale un título a tu post"
+        class="mt-1 p-2 w-full border-2 rounded-md focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300 transition-colors duration-300"
+      />
+      @if (invalidField('title')) {
+      <span class="text-sm text-red-500">{{ getError("title") }}</span>
+      }
+
       <label
         for="postContent"
-        class="block text-gray-700 text-sm font-bold mb-2"
-        >Publicar contenido:</label
+        class="block text-sm font-medium text-gray-700 mt-3"
+        >Descripción</label
       >
       <textarea
         id="postContent"
         name="postContent"
+        formControlName="content"
         rows="4"
-        class="w-full border-2 rounded-md px-4 py-2 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5 resize-none focus:outline-none focus:border-blue-500"
+        class="mt-1 w-full border-2 rounded-md px-4 py-2 leading-5 transition duration-150 ease-in-out sm:text-sm sm:leading-5 resize-none focus:border-gray-200 focus:outline-none focus:ring-2 focus:ring-offset-2 focus:ring-gray-300"
         placeholder="¡Comparte con el mundo desde aquí!"
       ></textarea>
+      @if (invalidField('title')) {
+      <span class="text-sm text-red-500">{{ getError("title") }}</span>
+      }
     </div>
 
     <!-- Submit Button and Character Limit Section -->
     <div class="flex items-center justify-between">
       <button
         type="submit"
+        (click)="submit()"
         class="flex justify-center items-center bg-blue-500 hover:bg-blue-600 focus:outline-none focus:shadow-outline-blue text-white py-2 px-4 rounded-md transition duration-300 gap-2"
       >
         Publicar

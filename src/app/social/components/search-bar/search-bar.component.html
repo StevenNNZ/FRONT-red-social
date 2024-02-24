@@ -5,13 +5,15 @@
         type="text"
         class="w-full bg-white pl-2 text-base font-semibold outline-0"
         placeholder="¡Busca un post específico!"
-        id=""
+        #term
       />
-      <input
+      <button
         type="button"
-        value="Buscar"
         class="bg-blue-500 p-2 rounded-tr-lg rounded-br-lg text-white font-semibold hover:bg-blue-800 transition-colors"
-      />
+        (click)="filterPosts(term.value)"
+      >
+        Buscar
+      </button>
     </div>
   </div>
 </div>

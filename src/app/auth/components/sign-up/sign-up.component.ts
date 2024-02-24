@@ -5,21 +5,25 @@ import {
   isInvalidField,
   patterEmail,
   sweetAlert,
-} from '../../services/form-errors';
+} from '../../func/form-errors';
 import { FormBuilder, ReactiveFormsModule, Validators } from '@angular/forms';
 import { AuthService } from '../../services/auth.service';
 import { RegisterRequest } from '../../interface/user-register.interface';
+import { SpinnerComponent } from '../../../shared/spinner/spinner.component';
 
 @Component({
   selector: 'app-sign-up',
   standalone: true,
-  imports: [RouterModule, ReactiveFormsModule],
+  imports: [RouterModule, ReactiveFormsModule, SpinnerComponent],
   templateUrl: './sign-up.component.html',
   styles: ``,
 })
 export default class SignUpComponent {
   private router = inject(Router);
   private fb = inject(FormBuilder);
+
+  //status variables
+  public loading = false;
 
   // own services
   private auth = inject(AuthService);
@@ -32,6 +36,8 @@ export default class SignUpComponent {
   });
 
   register() {
+    if (this.loading) return;
+
     if (this.form.invalid) {
       sweetAlert('Uy!', 'El formulario posee errores, echales un vistazo');
       this.form.markAllAsTouched();
@@ -39,10 +45,18 @@ export default class SignUpComponent {
     }
 
     const data = this.form.value as RegisterRequest;
+    this.loading = true;
 
     this.auth.registerUser(data).subscribe({
-      next: (_) => this.router.navigate(['/social']),
-      error: (e) => sweetAlert('Algo salió mal...', e.error.message),
+      next: (_) => {
+        this.loading = false;
+
+        this.router.navigate(['/social']);
+      },
+      error: (e) => {
+        this.loading = false;
+        sweetAlert('Algo salió mal...', e.error.message);
+      },
     });
   }
 

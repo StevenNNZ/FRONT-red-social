@@ -1,9 +1,12 @@
 import { Routes } from '@angular/router';
+import { authGuard } from './auth/guards/auth.guard';
+import { authLoggedGuard } from './auth/guards/auth-logged.guard';
 
 export const routes: Routes = [
   {
     path: 'auth',
     loadComponent: () => import('./auth/auth.component'),
+    canActivate: [authLoggedGuard],
     children: [
       {
         path: 'sign-in',
@@ -24,6 +27,7 @@ export const routes: Routes = [
   {
     path: 'social',
     loadComponent: () => import('./social/social.component'),
+    canActivate: [authGuard],
     children: [
       {
         path: 'wall',

@@ -1,25 +1,33 @@
 <div class="grid grid-cols-1 lg:grid-cols-2 gap-4">
+  @if(loading){
+  <div class="flex w-full justify-center">
+    <app-spinner />
+  </div>
+  }@else {
+
   <!-- Card post users -->
-  @for (post of posts(); track post.id) {
+  @for (post of posts(); track post._id;) {
 
   <div class="bg-white p-8 rounded-lg shadow-md max-w-md">
     <!-- User Info with Three-Dot Menu -->
     <div class="flex items-center justify-between mb-4">
       <div class="flex items-center space-x-2">
         <img
-          src="https://i.pravatar.cc/150?img={{ post.id }}"
+          src="https://i.pravatar.cc/150?img={{ post.userId.idImageRandom }}"
           alt="User Avatar"
           class="w-8 h-8 rounded-full"
         />
         <div>
-          <p class="text-gray-800 font-semibold">{{ post.nombre_user }}</p>
+          <p class="text-gray-800 font-semibold">
+            {{ post.userId.fullName | titlecase }}
+          </p>
           <p class="text-gray-500 text-sm">
-            Publicado el {{ post.fecha_publicacion }}
+            Publicado el {{ post.createdAt | date : "medium" }}
           </p>
         </div>
       </div>
 
-      @if (!modalsOpen()) {
+      @if (!modalsOpen() && user?._id === post.userId._id) {
       <div
         class="text-gray-500 cursor-pointer"
         (click)="onToggleMenu(dropdown)"
@@ -50,7 +58,7 @@
                 <a
                   class="flex rounded-md px-4 py-2 text-sm text-red-500 hover:bg-gray-100 active:bg-blue-100 cursor-pointer"
                   role="menuitem"
-                  (click)="deletePost(post.id)"
+                  (click)="deletePost(post._id)"
                 >
                   Eliminar
                 </a>
@@ -70,8 +78,8 @@
     </div>
     <!-- Message -->
     <div class="mb-4">
-      <h3 class="font-bold text-gray-800">{{ post.titulo }}</h3>
-      <p class="text-gray-800">{{ post.descripcion }}</p>
+      <h3 class="font-bold text-gray-800">{{ post.title }}</h3>
+      <p class="text-gray-800">{{ post.content }}</p>
     </div>
     <!-- Image -->
 
@@ -79,6 +87,7 @@
     <div class="flex items-center justify-between text-gray-500">
       <div class="flex items-center space-x-2">
         <button
+          (click)="likePost(post._id)"
           class="flex justify-center items-center gap-2 px-2 hover:bg-gray-50 rounded-full p-1"
         >
           <svg
@@ -95,7 +104,10 @@
       </div>
     </div>
   </div>
-  }
+  } @empty {
+  <p class="text-red-500">No se han encontrado posts</p>
+
+  } }
 </div>
 
 @if (showModal()) {

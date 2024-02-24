@@ -13,5 +13,6 @@ export interface User {
   updatedAt: string;
   isActive: boolean;
   deletedAt: null;
+  idImageRandom: number;
   __v: number;
 }

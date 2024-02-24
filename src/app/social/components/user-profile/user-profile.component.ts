@@ -1,7 +1,6 @@
 import {
   ChangeDetectionStrategy,
   Component,
-  OnInit,
   computed,
   inject,
 } from '@angular/core';
@@ -9,7 +8,7 @@ import { UpdateUserModalComponent } from '../update-user-modal/update-user-modal
 import {
   modalUpdateProfileActive,
   modalUpdateProfileData,
-} from '../../services/modal-signals';
+} from '../../func/modal-signals';
 import { CommonModule } from '@angular/common';
 import { AuthService } from '../../../auth/services/auth.service';
 import { Router } from '@angular/router';
@@ -22,7 +21,7 @@ import { Router } from '@angular/router';
   styles: ``,
   changeDetection: ChangeDetectionStrategy.OnPush,
 })
-export class UserProfileComponent implements OnInit {
+export class UserProfileComponent {
   // Services
   private auth = inject(AuthService);
   private router = inject(Router);
@@ -30,10 +29,6 @@ export class UserProfileComponent implements OnInit {
   // Signals
   public user = computed(this.auth.currentUser);
   public showModal = computed(modalUpdateProfileActive);
-
-  ngOnInit(): void {
-    console.log(this.user());
-  }
 
   logOut() {
     this.auth.logOut();
